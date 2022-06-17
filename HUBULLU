@@ -1,0 +1,22 @@
+using System;
+
+public static class HUBULLU
+{
+    public static string Solve(int numberOfHighestPiece, int firstPlayer)
+        => firstPlayer == 0 ? "Airborne wins." : "Pagfloyd wins.";
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int remainingTestCases = int.Parse(Console.ReadLine());
+        while (remainingTestCases-- > 0)
+        {
+            int[] line = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+            Console.WriteLine(
+                HUBULLU.Solve(line[0], line[1]));
+        }
+    }
+}
