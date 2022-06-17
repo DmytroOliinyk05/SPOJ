@@ -1,0 +1,27 @@
+using System;
+
+public static class EBOXES
+{
+    public static int Solve(
+        int initialBoxCount,    // N
+        int boxSpawnRate,       // K
+        int repetitionCount,    // T
+        int totalEmptyBoxCount) // F
+        => initialBoxCount
+        + boxSpawnRate * (totalEmptyBoxCount - initialBoxCount) / (boxSpawnRate - 1);
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int remainingTestCases = int.Parse(Console.ReadLine());
+        while (remainingTestCases-- > 0)
+        {
+            int[] line = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+            Console.WriteLine(
+                EBOXES.Solve(line[0], line[1], line[2], line[3]));
+        }
+    }
+}
