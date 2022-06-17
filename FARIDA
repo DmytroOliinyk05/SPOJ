@@ -1,0 +1,39 @@
+using System;
+public static class FARIDA
+{
+    private static long[] _maxCoinsCollectable = new long[10000];
+    public static long Solve(int monsterCount, int[] coinCounts)
+    {
+        if (monsterCount == 0) return 0;
+        if (monsterCount == 1) return coinCounts[0];
+
+        _maxCoinsCollectable[0] = coinCounts[0];
+        _maxCoinsCollectable[1] = Math.Max(coinCounts[0], coinCounts[1]);
+        for (int m = 2; m < monsterCount; ++m)
+        {
+            _maxCoinsCollectable[m] = Math.Max(
+                coinCounts[m] + _maxCoinsCollectable[m - 2],
+                _maxCoinsCollectable[m - 1]);
+        }
+
+        return _maxCoinsCollectable[monsterCount - 1];
+    }
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int testCount = int.Parse(Console.ReadLine());
+        for (int t = 1; t <= testCount; ++t)
+        {
+            int monsterCount = int.Parse(Console.ReadLine());
+            int[] coinCounts = Array.ConvertAll(
+                Console.ReadLine().Split(default(char[]), StringSplitOptions.RemoveEmptyEntries),
+                int.Parse);
+
+            Console.WriteLine(
+                $"Case {t}: {FARIDA.Solve(monsterCount, coinCounts)}");
+        }
+    }
+}
