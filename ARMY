@@ -1,0 +1,32 @@
+using System;
+using System.Linq;
+
+public static class ARMY
+{
+    public static string Solve(
+        int[] strengthsOfGodzillasArmy, int[] strengthsOfMechaGodzillasArmy)
+        => strengthsOfGodzillasArmy.Max()
+        >= strengthsOfMechaGodzillasArmy.Max()
+        ? "Godzilla" : "MechaGodzilla";
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int remainingTestCases = int.Parse(Console.ReadLine());
+        while (remainingTestCases-- > 0)
+        {
+            Console.ReadLine();
+            Console.ReadLine();
+
+            int[] strengthsOfGodzillasArmy = Array.ConvertAll(
+                Console.ReadLine().Split(), int.Parse);
+            int[] strengthsOfMechaGodzillasArmy = Array.ConvertAll(
+                Console.ReadLine().Split(), int.Parse);
+
+            Console.WriteLine(
+                ARMY.Solve(strengthsOfGodzillasArmy, strengthsOfMechaGodzillasArmy));
+        }
+    }
+}
