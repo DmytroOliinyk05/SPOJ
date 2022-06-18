@@ -1,0 +1,35 @@
+using System;
+
+public static class DOTAA
+{
+    public static bool Solve(int heroCount, int towerCount, int towerDamage)
+    {
+        int totalSurvivableHits = 0;
+        for (int h = 0; h < heroCount; ++h)
+        {
+            int heroHealth = int.Parse(Console.ReadLine());
+            totalSurvivableHits += (heroHealth - 1) / towerDamage;
+        }
+
+        return totalSurvivableHits >= towerCount;
+    }
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int remainingTestCases = int.Parse(Console.ReadLine());
+        while (remainingTestCases-- > 0)
+        {
+            string[] line = Console.ReadLine().Split();
+
+            bool canHeroesSurvive = DOTAA.Solve(
+                heroCount: int.Parse(line[0]),
+                towerCount: int.Parse(line[1]),
+                towerDamage: int.Parse(line[2]));
+
+            Console.WriteLine(canHeroesSurvive ? "YES" : "NO");
+        }
+    }
+}
