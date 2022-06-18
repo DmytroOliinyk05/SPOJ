@@ -1,0 +1,49 @@
+using System;
+using System.Text;
+
+public static class ENIGMATH
+{
+    public static int[] Solve(int[] ab)
+    {
+        int a = ab[0];
+        int b = ab[1];
+        int gcd = GreatestCommonDivisor(a, b);
+        ab[0] = b / gcd; 
+        ab[1] = a / gcd; 
+
+        return ab; 
+    }
+
+    public static int GreatestCommonDivisor(int a, int b)
+    {
+        int temp;
+        while (b != 0)
+        {
+            temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
+    }
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        var output = new StringBuilder();
+        int remainingTestCases = int.Parse(Console.ReadLine());
+        while (remainingTestCases-- > 0)
+        {
+            int[] ab = Array.ConvertAll(Console.ReadLine().Trim().Split(), int.Parse);
+            int[] xy = ENIGMATH.Solve(ab);
+
+            output.Append(
+                $"{xy[0]} {xy[1]}");
+            output.AppendLine();
+        }
+
+        Console.Write(output);
+    }
+}
