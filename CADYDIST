@@ -1,0 +1,31 @@
+using System;
+using System.Linq;
+
+public static class CADYDIST
+{
+    public static long Solve(int[] classSizes, int[] candyPrices)
+    {
+        Array.Sort(classSizes);
+        Array.Sort(candyPrices);
+
+        return classSizes.Reverse()
+            .Zip(candyPrices, (s, p) => s * (long)p)
+            .Sum();
+    }
+}
+
+public static class Program
+{
+    private static void Main()
+    {
+        int classCount;
+        while ((classCount = int.Parse(Console.ReadLine())) != 0)
+        {
+            int[] classSizes = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+            int[] candyPrices = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+            Console.WriteLine(
+                CADYDIST.Solve(classSizes, candyPrices));
+        }
+    }
+}
